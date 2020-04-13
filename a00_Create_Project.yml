@@ -1,0 +1,19 @@
+- name: Deploy on OpenStack
+  hosts: localhost
+  gather_facts: true
+  tasks:
+    - name: Deploy an instance
+      os_server:
+        auth:
+          auth_url: http://controller:5000/v3/
+          username: admin
+          password: openstack
+        state: present
+        name: Chinavm001
+        region_name: RegionOne
+        availability_zone: nova
+        security_groups: default
+        image: cirros
+        wait: yes
+        flavor: m1.tiny
+        network: provider1
